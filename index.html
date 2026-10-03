@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -33,8 +32,6 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(10,14,39,.92);backdr
 .chip.on{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-color:transparent;}
 .sec-title{font-size:13px;color:var(--sub);margin:14px 4px 10px;display:flex;align-items:center;gap:8px;}
 .sec-title .bar{width:4px;height:14px;border-radius:3px;background:linear-gradient(var(--acc),var(--acc2));}
-.sec-title .skipToggle{margin-left:auto;font-size:11px;color:var(--sub);cursor:pointer;padding:3px 8px;border-radius:8px;border:1px solid var(--line);}
-.sec-title .skipToggle.on{color:var(--ok);border-color:var(--ok);}
 .list{display:flex;flex-direction:column;gap:9px;}
 .station{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;cursor:pointer;transition:.15s;}
 .station:active{transform:scale(.985);}
@@ -73,4 +70,12 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(10,14,39,.92);backdr
   </div>
   <div class="top-actions">
     <button class="iconbtn" id="btnFav" type="button" title="收藏">★</button>
-    <button class="iconbtn" id="bt
+    <button class="iconbtn" id="btnTop" type="button" title="顶部">↑</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="search">
+    <div class="searchbox">
+      <input id="q" type="search" placeholder="搜索全球电台 / 国家 / 语言…" autocomplete="off">
+  
