@@ -72,3 +72,38 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(10,14,39,.92);backdr
   <div class="top-actions">
     <button class="iconbtn" id="btnFav" type="button" title="收藏">★</button>
     <button class="iconbtn" id="btnTo
+<!DOCTYPE html>
+<html>
+<body style="font-family:sans-serif;padding:20px;background:#111;color:#eee;">
+<div id="out">测试中…</div>
+<script>
+var hosts = [
+  "https://de1.api.radio-browser.info",
+  "https://at1.api.radio-browser.info",
+  "https://nl1.api.radio-browser.info",
+  "https://fi1.api.radio-browser.info",
+  "https://all.api.radio-browser.info"
+];
+var out = document.getElementById('out');
+var i = 0;
+function next(){
+  if(i >= hosts.length){ out.textContent = '❌ 全部节点失败 —— 您的网络访问不到 radio-browser'; return; }
+  var h = hosts[i++];
+  out.textContent = '正在测试 ' + h + ' …';
+  var ctrl = new AbortController();
+  var t = setTimeout(function(){ ctrl.abort(); }, 6000);
+  fetch(h + '/json/stats', { signal: ctrl.signal })
+    .then(function(r){ clearTimeout(t); if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(d){
+      out.innerHTML = '✅ 成功：' + h + '<br>stations = ' + d.stations;
+    })
+    .catch(function(e){
+      clearTimeout(t);
+      out.textContent = '❌ 失败：' + h + ' （' + e.message + '）';
+      setTimeout(next, 600);
+    });
+}
+next();
+</script>
+</body>
+    </html>
